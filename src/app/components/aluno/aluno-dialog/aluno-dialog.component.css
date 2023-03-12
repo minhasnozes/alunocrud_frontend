@@ -1,0 +1,9 @@
+
+.modal .modal-content {
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.modal-header {
+  padding: 20px 30px;
+}

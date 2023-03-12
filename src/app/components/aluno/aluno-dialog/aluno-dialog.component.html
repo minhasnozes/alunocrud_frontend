@@ -1,0 +1,24 @@
+<form [formGroup]="formulario">
+  <div class="modal-header">
+    <h4 class="modal-title">Aluno</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" class="form-control" formControlName="nome">
+    </div>
+    <div class="form-group">
+      <label>Sobrenome</label>
+      <input type="email" class="form-control" formControlName="sobrenome">
+    </div>
+    <div class="form-group">
+      <label>Data nascimento</label>
+      <textarea class="form-control" formControlName="data_nascimento"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+    <input type="submit" class="btn btn-success" (click)="add()">
+  </div>
+</form>
