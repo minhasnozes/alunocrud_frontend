@@ -46,6 +46,8 @@ export class AlunoComponent implements OnInit {
       data: {
         parent: this
       },
+      height: '450px',
+      width: '550px',
     });
   }
 

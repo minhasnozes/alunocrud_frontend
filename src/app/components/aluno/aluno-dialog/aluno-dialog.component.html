@@ -1,7 +1,9 @@
 <form [formGroup]="formulario">
   <div class="modal-header">
     <h4 class="modal-title">Aluno</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-hidden="true">
+      <mat-icon fontIcon="close"></mat-icon>
+    </button>
   </div>
   <div class="modal-body">
     <div class="form-group">
@@ -14,11 +16,20 @@
     </div>
     <div class="form-group">
       <label>Data nascimento</label>
-      <textarea class="form-control" formControlName="data_nascimento"></textarea>
+      <!-- <textarea class="form-control" formControlName="data_nascimento"></textarea> -->
+      <!-- <input matInput  class="form-control" formControlName="data_nascimento" [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker> -->
+      <mat-form-field appearance="fill">
+        <input matInput class="form-control" formControlName="data_nascimento" [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
   </div>
   <div class="modal-footer">
-    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+    <input type="button" class="btn btn-default" (click)="closeModal()" value="Cancel">
     <input type="submit" class="btn btn-success" (click)="add()">
   </div>
 </form>

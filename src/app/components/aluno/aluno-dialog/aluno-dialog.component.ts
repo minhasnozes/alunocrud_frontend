@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AlunoService } from '../../../services/aluno.service';
 import { Aluno } from '../../../interfaces/aluno';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { config } from 'rxjs';
 import { AlunoComponent } from '../aluno.component';
 
 export interface DialogData {
@@ -23,6 +22,7 @@ export class AlunoDialogComponent {
   sobrenome: FormControl;
   data_nascimento: FormControl;
   durationInSeconds = 5;
+  // datepickerControl = new MatDatepickerControl<any>(this.myControl);
   numero = 1;
 
   constructor(
@@ -30,7 +30,7 @@ export class AlunoDialogComponent {
     private alunoService: AlunoService,
     private _snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<AlunoDialogComponent>
-  ) {
+    ) {
     this.nome = new FormControl(data.aluno?.nome || '', [Validators.required]);
     this.sobrenome = new FormControl(data.aluno?.sobrenome || '', [Validators.required]);
     this.data_nascimento = new FormControl(data.aluno?.data_nascimento || '', [Validators.required]);
@@ -43,6 +43,7 @@ export class AlunoDialogComponent {
     });
   }
   add() {
+    // TODO: this.formulario.value.data_nascimento -> deve ser convertido para "yyyy-mm-dd"
     // console.log(this.formulario.value)
     this.alunoService.createAluno(this.formulario.value).subscribe(r => {
       this._snackBar.open('Aluno cadastrado');
@@ -51,6 +52,10 @@ export class AlunoDialogComponent {
         this.data.parent.parentComponentMethod(result); // chama o método do componente pai com o resultado
       });
     })
+  }
+
+  closeModal() {
+    this.dialogRef.close(true);
   }
 }
 
