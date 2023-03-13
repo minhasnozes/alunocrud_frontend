@@ -1,13 +1,13 @@
-import {OnInit, Component, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { OnInit, Component, ViewChild, Inject } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Aluno } from '../../interfaces/aluno';
 import { AlunoService } from '../../services/aluno.service';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlunoDialogComponent } from './aluno-dialog/aluno-dialog.component';
 
 const ELEMENT_DATA: Aluno[] = [
-  {nome: 'Marcus', sobrenome: 'Soares', data_nascimento: '04/11/1993'}
+  { nome: 'Marcus', sobrenome: 'Soares', data_nascimento: '04/11/1993' }
 ];
 
 @Component({
@@ -22,7 +22,7 @@ export class AlunoComponent implements OnInit {
   constructor(
     private alunoService: AlunoService,
     private dialog: MatDialog
-    ) { }
+  ) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
@@ -37,22 +37,14 @@ export class AlunoComponent implements OnInit {
     })
   }
 
-  createNew() {
-
-  }
-  edit() {
-
+  parentComponentMethod(result: boolean) {
+    this.getAlunos();
   }
 
-  cancelOrDelete() {
-
-  }
-
-  openDialog() {
-    console.log('openDialog');
+  addNovoAluno() {
     this.dialog.open(AlunoDialogComponent, {
       data: {
-        animal: 'panda',
+        parent: this
       },
     });
   }
