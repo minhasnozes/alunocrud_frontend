@@ -18,12 +18,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlunoComponent,
-    AlunoDialogComponent
+    AlunoDialogComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
