@@ -37,7 +37,7 @@ export class AlunoService {
   }
 
   updateAluno(aluno: Aluno): Observable<Aluno> {
-    const url = `${this.apiUrl}/${aluno.id}`;
+    const url = `${this.apiUrl}${aluno.id}/`;
     return this.http.put<Aluno>(url, aluno);
   }
 

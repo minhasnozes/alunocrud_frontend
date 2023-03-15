@@ -51,9 +51,19 @@ export class AlunoComponent implements OnInit {
     });
   }
 
+  edit(aluno: Aluno) {
+    this.dialog.open(AlunoDialogComponent, {
+      data: {
+        aluno: aluno,
+        parent: this
+      },
+      height: '450px',
+      width: '550px',
+    });
+  }
+
   delete(id: number) {
     this.alunoService.deleteAluno(id).subscribe(r => {
-      console.log(r);
     })
   }
 }

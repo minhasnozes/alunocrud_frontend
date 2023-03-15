@@ -38,6 +38,10 @@ span {
   cursor: pointer;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .table-responsive {
   margin: 30px 0;
 }
