@@ -19,6 +19,10 @@ import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { CursoComponent } from './components/curso/curso.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppComponent,
     AlunoComponent,
     AlunoDialogComponent,
-    NavbarComponent
+    NavbarComponent,
+    CategoriaComponent,
+    CursoComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
