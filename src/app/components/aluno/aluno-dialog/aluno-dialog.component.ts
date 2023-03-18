@@ -9,7 +9,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 
 export const MY_FORMATS = {
-   parse: {
+  parse: {
     dateInput: 'LL'
   },
   display: {
@@ -31,7 +31,7 @@ export const MY_FORMATS = {
 })
 export class AlunoDialogComponent {
   formulario: FormGroup;
-  id : FormControl;
+  id: FormControl;
   nome: FormControl;
   sobrenome: FormControl;
   data_nascimento: FormControl;
@@ -67,12 +67,7 @@ export class AlunoDialogComponent {
     }
   }
   add() {
-    const campo_data = new Date(this.formulario.value.data_nascimento);
-    const ano = campo_data.getFullYear();
-    const mes = ('0' + (campo_data.getMonth() + 1)).slice(-2);
-    const dia = ('0' + campo_data.getDate()).slice(-2);
-    const dataFormatada = `${ano}-${mes}-${dia}`;
-    this.formulario.value.data_nascimento = dataFormatada;
+    this.formulario.value.data_nascimento = this.formatDate(this.formulario.value.data_nascimento);
     if (this.data.aluno) {
       this.alunoService.updateAluno(this.formulario.value).subscribe(r => {
         this._snackBar.open('Aluno Editado');
@@ -94,6 +89,18 @@ export class AlunoDialogComponent {
 
   closeModal() {
     this.dialogRef.close(true);
+  }
+
+  formatDate(date: any) {
+    const campo_data = new Date(date);
+    if (typeof(date) == 'string') {
+      campo_data.setDate(campo_data.getDate() + 1);
+    }
+    const ano = campo_data.getFullYear();
+    const mes = ('0' + (campo_data.getMonth() + 1)).slice(-2);
+    const dia = ('0' + campo_data.getDate()).slice(-2);
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+    return dataFormatada
   }
 
 }
