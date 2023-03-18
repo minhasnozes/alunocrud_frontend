@@ -8,13 +8,18 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-      boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> => {
-    if (this.authService.isLoggedInFn()) {
+    boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> => {
+    if (this.authService.isLoggedIn()) {
+      this.authService.refreshToken();
+
       return true;
+    } else {
+      this.authService.logout();
+      this.router.navigate(['login']);
+      return false; // redireciona para a página de login se o usuário não estiver logado
     }
-    return this.router.parseUrl('/login'); // redireciona para a página de login se o usuário não estiver logado
   }
 }

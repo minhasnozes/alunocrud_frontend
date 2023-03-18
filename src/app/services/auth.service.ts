@@ -1,27 +1,80 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import jwt_decode from 'jwt-decode';
+import * as moment from 'moment';
+import { tap, shareReplay } from 'rxjs';
+import { JWTPayload } from '../interfaces/jwt.payload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private isLoggedIn = false;
+  private apiRoot = 'http://localhost:8000/auth/';
 
-  login(username: string, password: string): boolean {
-    // Fazer a lógica de autenticação aqui, por exemplo, verificar se o nome de usuário e senha estão corretos em um backend
-    if (username === 'user' && password === 'password') {
-      this.isLoggedIn = true;
-      return true;
+  constructor(private http: HttpClient) {
+  }
+
+  login(username: string, password: string) {
+    return this.http.post(
+      this.apiRoot.concat('login/'),
+      { username, password }
+    ).pipe(
+      tap(response => this.setSession(response)),
+      shareReplay(),
+    );
+  }
+
+  signup(username: string, email: string, password1: string, password2: string) {
+    // TODO: implement signup
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires_at');
+  }
+
+  get token(): any {
+    return localStorage.getItem('token');
+  }
+
+  private setSession(authResult: any) {
+    const token = authResult.token;
+    const payload = <JWTPayload>jwt_decode(token);
+    const expiresAt = moment.unix(payload.exp);
+
+    localStorage.setItem('token', authResult.token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
+
+  getExpiration() {
+    const expiration: any = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+
+    return moment(expiresAt);
+  }
+
+  refreshToken() {
+    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+      return this.http.post(
+        this.apiRoot.concat('refresh-token/'),
+        { token: this.token }
+      ).pipe(
+        tap(response => this.setSession(response)),
+        shareReplay(),
+      ).subscribe();
     }
-    return false;
+    // Se a condição não for satisfeita, retorne null (ou undefined)
+    return null;
   }
 
-  logout(): void {
-    this.isLoggedIn = false;
+
+  isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
   }
 
-  isLoggedInFn(): boolean {
-    return this.isLoggedIn;
+  isLoggedOut() {
+    return !this.isLoggedIn();
   }
 
 }

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { AlunoDialogComponent } from './components/aluno/aluno-dialog/aluno-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +25,9 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guard/auth.guard';
+import { AuthInterceptor } from './guard/auth.interceptor';
 
 
 @NgModule({
@@ -56,15 +59,21 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
-
+    MatCardModule,
   ],
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 },
 
     },
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
