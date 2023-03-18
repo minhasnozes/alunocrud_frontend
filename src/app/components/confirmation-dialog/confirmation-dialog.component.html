@@ -1,0 +1,16 @@
+<div class="modal-content">
+  <form>
+    <div class="modal-header">
+      <h4 class="modal-title">Excluir Aluno</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="onCancelClick()" >×</button>
+    </div>
+    <div class="modal-body">
+      <p>{{message}}</p>
+      <p class="text-warning"><small>Essa ação não pode ser desfeita.</small></p>
+    </div>
+    <div class="modal-footer">
+      <input type="button" class="btn btn-default" (click)="onCancelClick()" value="Cancel">
+      <input type="submit" class="btn btn-danger" (click)="onConfirmClick()" value="Delete">
+    </div>
+  </form>
+</div>

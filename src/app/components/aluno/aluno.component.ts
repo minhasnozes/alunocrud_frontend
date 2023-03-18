@@ -3,13 +3,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Aluno } from '../../interfaces/aluno';
 import { AlunoService } from '../../services/aluno.service';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AlunoDialogComponent } from './aluno-dialog/aluno-dialog.component';
-import { MatSort, MatSortable } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
+import { firstValueFrom } from 'rxjs';
 
-const ELEMENT_DATA: Aluno[] = [
-  { nome: 'Marcus', sobrenome: 'Soares', data_nascimento: '04/11/1993' }
-];
+import { ThemePalette } from '@angular/material/core';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   selector: 'app-aluno',
@@ -18,8 +19,10 @@ const ELEMENT_DATA: Aluno[] = [
 })
 export class AlunoComponent implements OnInit {
   alunos: Aluno[];
-  displayedColumns: string[] = ['nome', 'sobrenome', 'data_nascimento', 'actionsColumn'];
+  primary: ThemePalette = 'warn';
+  displayedColumns: string[] = ['checkbox', 'nome', 'sobrenome', 'data_nascimento', 'actionsColumn'];
   dataSource = new MatTableDataSource<Aluno>();
+  selection = new SelectionModel<Aluno>(true, [])
   // @ViewChild(MatSort) sort: MatSort;
   constructor(
     private alunoService: AlunoService,
@@ -66,8 +69,50 @@ export class AlunoComponent implements OnInit {
     });
   }
 
-  delete(id: number) {
-    this.alunoService.deleteAluno(id).subscribe(r => {
-    })
+  delete(id: any) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: 'Tem certeza que deseja deletar este aluno?' },
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.alunoService.deleteAluno(id).subscribe(r => {
+          this.getAlunos();
+        });
+      }
+    });
+  }
+
+  async batchDelete() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: 'Tem certeza que deseja deletar todos estes aluno?' }
+    });
+    try {
+      const result = await firstValueFrom(dialogRef.afterClosed());
+
+      if (result) {
+        for (const elemento of this.selection.selected) {
+          const id: any = elemento.id;
+          await firstValueFrom(this.alunoService.deleteAluno(id));
+        }
+        this.getAlunos();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 }

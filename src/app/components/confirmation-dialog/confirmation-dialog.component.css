@@ -87,16 +87,13 @@ label {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .modal-footer {
-  background: #ecf0f1;
   border-radius: 0 0 3px 3px;
-}
-
-.modal-footer {
   display: -ms-flexbox;
+  background: #ecf0f1;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -125,7 +122,6 @@ label {
   color: #212529;
   text-align: center;
   vertical-align: middle;
-
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
@@ -133,7 +129,7 @@ label {
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   cursor: pointer;
 }
 
@@ -141,6 +137,11 @@ label {
   color: #fff;
   background-color: #28a745;
   border-color: #28a745;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #bd2130;
+  border-color: #b21f2d;
 }
 
 .form {

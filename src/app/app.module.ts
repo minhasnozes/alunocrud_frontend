@@ -28,6 +28,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './guard/auth.interceptor';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { AuthInterceptor } from './guard/auth.interceptor';
     CursoComponent,
     HomeComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AuthInterceptor } from './guard/auth.interceptor';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatCheckboxModule
   ],
   providers: [
     {
