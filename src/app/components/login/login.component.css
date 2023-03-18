@@ -1,0 +1,36 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: mat-color(#f5f5f5, 300); /* Usando a cor cinza do tema padrão */
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  background-color: #fff; /* Usando a cor branca como fundo do cartão */
+  border-radius: 8px;
+}
+
+.login-form {
+  padding: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* Alterando a cor do botão para a cor primária do tema padrão */
+button.mat-button {
+  background-color: mat-color(#0d47a1);
+  color: #fff;
+}
+
+/* Alterando a cor do botão quando estiver desabilitado */
+button.mat-button:disabled {
+  background-color: mat-color(#f5f5f5, 500);
+  color: rgba(255, 255, 255, 0.5);
+}

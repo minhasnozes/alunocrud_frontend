@@ -5,6 +5,7 @@ import { Aluno } from '../../interfaces/aluno';
 import { AlunoService } from '../../services/aluno.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlunoDialogComponent } from './aluno-dialog/aluno-dialog.component';
+import { MatSort, MatSortable } from '@angular/material/sort';
 
 const ELEMENT_DATA: Aluno[] = [
   { nome: 'Marcus', sobrenome: 'Soares', data_nascimento: '04/11/1993' }
@@ -19,13 +20,16 @@ export class AlunoComponent implements OnInit {
   alunos: Aluno[];
   displayedColumns: string[] = ['nome', 'sobrenome', 'data_nascimento', 'actionsColumn'];
   dataSource = new MatTableDataSource<Aluno>();
+  // @ViewChild(MatSort) sort: MatSort;
   constructor(
     private alunoService: AlunoService,
     private dialog: MatDialog
   ) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+
   ngOnInit() {
+    // this.sort.sort(({ id: 'id', start: 'asc'}) as MatSortable);
     this.dataSource.paginator = this.paginator;
     this.getAlunos();
 

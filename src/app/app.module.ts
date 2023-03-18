@@ -23,6 +23,8 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import { CursoComponent } from './components/curso/curso.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoginComponent } from './components/login/login.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     CategoriaComponent,
     CursoComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
+
   ],
   providers: [
     {
