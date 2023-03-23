@@ -30,6 +30,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { AuthInterceptor } from './guard/auth.interceptor';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { CategoriaDialogComponent } from './components/categoria/categoria-dialog/categoria-dialog.component';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     AppComponent,
     AlunoComponent,
     AlunoDialogComponent,
+    CategoriaComponent,
+    CategoriaDialogComponent,
     NavbarComponent,
     CategoriaComponent,
     CursoComponent,
