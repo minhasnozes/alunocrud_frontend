@@ -67,3 +67,10 @@ span {
 .delete {
   color: #F44336;
 }
+
+.no-data-message {
+  color: #000000;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}

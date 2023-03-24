@@ -6,14 +6,14 @@
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput type="text" formControlName="username" required autocomplete="off">
+        <input matInput type="text" id="username" formControlName="username" required autocomplete="off">
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required autocomplete="off">
+        <input matInput type="password" id="password" formControlName="password" required autocomplete="off">
       </mat-form-field>
       <div class="form-actions">
-        <button mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button mat-button type="submit" id="btnLogin" [disabled]="loginForm.invalid">Login</button>
       </div>
     </form>
   </mat-card>
