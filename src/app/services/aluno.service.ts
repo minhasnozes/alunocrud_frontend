@@ -14,7 +14,7 @@ interface response {
 })
 
 export class AlunoService {
-  private apiUrl = 'http://localhost:8000/aluno/';
+  private apiUrl = 'http://minhasnozes.pythonanywhere.com/aluno/';
 
   constructor(private http: HttpClient) { }
 

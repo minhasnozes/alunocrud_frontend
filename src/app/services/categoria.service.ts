@@ -14,7 +14,7 @@ interface response {
 })
 
 export class CategoriaService {
-  private apiUrl = 'http://localhost:8000/categoria/';
+  private apiUrl = 'http://minhasnozes.pythonanywhere.com/categoria/';
 
   constructor(private http: HttpClient) { }
 

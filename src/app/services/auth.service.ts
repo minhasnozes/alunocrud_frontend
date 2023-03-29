@@ -10,7 +10,7 @@ import { JWTPayload } from '../interfaces/jwt.payload';
 })
 export class AuthService {
 
-  private apiRoot = 'http://localhost:8000/auth/';
+  private apiRoot = 'http://minhasnozes.pythonanywhere.com/auth/';
 
   constructor(private http: HttpClient) {
   }
