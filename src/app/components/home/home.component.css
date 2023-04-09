@@ -1,0 +1,28 @@
+.home {
+    font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    white-space: pre-line;
+    font-weight: bold;
+    letter-spacing: -0.03em;
+    color: rgb(255, 255, 255);
+    margin-bottom: 50px;
+    padding: 64px;
+    margin-left: 99px;
+    font-size: 3rem;
+    line-height: 1.16;
+    min-width: 768px;
+}
+
+.footer {
+    font-family: Graphik-Medium, Graphik-Regular, "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    white-space: pre-line;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+    border-left: 2px
+  }
