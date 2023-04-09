@@ -15,12 +15,15 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string, redirectUrl: string = '/') {
     return this.http.post(
       this.apiRoot.concat('login/'),
       { username, password }
     ).pipe(
-      tap(response => this.setSession(response)),
+      tap(response => {
+        this.setSession(response);
+        window.location.href = redirectUrl; // redireciona para a URL especificada
+      }),
       shareReplay(),
     );
   }
